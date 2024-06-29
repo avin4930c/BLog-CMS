@@ -52,7 +52,7 @@ function EditProfileMain() {
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
         setFile(selectedFile);
-        setAvatarUrl(''); // Reset avatar URL when a new file is selected
+        setAvatarUrl('');
     };
 
     async function handleSubmit(e) {
@@ -80,7 +80,7 @@ function EditProfileMain() {
             }
 
             try {
-                const response = await fetch('http://localhost:3000/user/updateUser', {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/user/updateUse`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

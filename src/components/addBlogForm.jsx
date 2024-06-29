@@ -73,7 +73,7 @@ const AddBlogForm = () => {
 
         try {
             data.content = contentValue;
-            const response = await fetch('http://localhost:3000/blog/addPost', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/blog/addPost`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
