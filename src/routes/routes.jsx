@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ErrorPage } from '../errorPage';
 import MainPage from '../pages/mainPage';
 import AddBlogForm from '../components/addBlogForm';
@@ -6,7 +6,7 @@ import SignupForm from '../components/signupForm';
 import LoginForm from '../components/loginForm';
 import EditBlogForm from '../components/editBlogForm';
 import UnderDevelopmentPage from '../components/soonPage';
-import EditProfile from '../components/editProfile';
+import EditProfile from '../pages/editProfile';
 
 function Route() {
     const router = createBrowserRouter([

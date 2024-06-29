@@ -32,10 +32,10 @@ function LoginForm() {
                 body: JSON.stringify(data),
             });
             console.log(response);
-    
+
             if (response.ok) {
                 const responseData = await response.json();
-                const token = responseData.token;   
+                const token = responseData.token;
                 if (!token) {
                     setServerErrors([{ msg: 'No token received, login failed' }]);
                     return;
@@ -57,7 +57,7 @@ function LoginForm() {
             console.error('Error:', error);
             setServerErrors([{ msg: 'Network error, please try again later.' }]);
         }
-    };    
+    };
 
     if (authToken) {
         navigate('/');

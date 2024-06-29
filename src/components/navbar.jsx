@@ -11,7 +11,7 @@ import {
     Transition,
 } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Link, useLocation } from 'react-router-dom'; // Added useLocation
+import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { FaArrowRightLong } from "react-icons/fa6";
 
@@ -24,11 +24,10 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
-    const location = useLocation(); // Get current location
+    const location = useLocation();
     const [navigation, setNavigation] = useState(initialNavigation);
     const { user, authToken, logout } = useContext(AuthContext);
 
-    // Update current navigation based on current location
     useEffect(() => {
         const currentNav = initialNavigation.map((item) => ({
             ...item,
@@ -67,10 +66,10 @@ export default function NavBar() {
 
                                 <div className='px-5 py-2 pr-10 text-lg text-white font-bold pl-10'>
                                     <Link to="/" onClick={() => handleNavClick(0)}>
-                                    <div className='flex items-center'>
-                                    <GiSpikedDragonHead className='w-10 h-10 mx-2' />
-                                    Transponder Medium
-                                    </div>
+                                        <div className='flex items-center'>
+                                            <GiSpikedDragonHead className='w-10 h-10 mx-2' />
+                                            Transponder Medium
+                                        </div>
                                     </Link>
                                 </div>
 
@@ -94,8 +93,8 @@ export default function NavBar() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 max-sm:hidden">
-                                    <div className='text-white'>
+                                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                                    <div className='text-white max-sm:hidden'>
                                         {user ? "Hello, " + user.first_name : ""}
                                     </div>
 
@@ -140,7 +139,7 @@ export default function NavBar() {
                                                         <MenuItem>
                                                             {({ active }) => (
                                                                 <a
-                                                                    href="#"
+                                                                    href="/editProfile"
                                                                     className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                                 >
                                                                     Edit Profile

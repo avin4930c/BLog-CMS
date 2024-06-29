@@ -8,7 +8,6 @@ import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { useEffect } from 'react';
 
 const schema = yup.object().shape({
     title: yup.string().required('Title is required'),
@@ -31,7 +30,7 @@ const AddBlogForm = () => {
     const [contentValue, setContentValue] = useState('');
 
     const handleQuillChange = (content, delta, source, editor) => {
-        setContentValue(editor.getHTML()); // Update 'content' value
+        setContentValue(editor.getHTML());
     };
 
     const handleFileChange = (e) => {
@@ -41,10 +40,10 @@ const AddBlogForm = () => {
     const uploadFileToCloudinary = async (file) => {
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('upload_preset', 'blog_api_preset'); // Use environment variable
+        formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
 
         try {
-            const response = await fetch(`https://api.cloudinary.com/v1_1/dyi5bnusc/image/upload`, { // Use environment variable
+            const response = await fetch(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, { // Use environment variable
                 method: 'POST',
                 body: formData
             });
@@ -186,7 +185,7 @@ const AddBlogForm = () => {
                                 value={contentValue}
                                 {...register('content')}
                                 onChange={handleQuillChange}
-                                theme="snow" // Choose a theme (snow, bubble, etc.)
+                                theme="snow"
                                 className="mt-1 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                             {errors.content && <p className="text-red-600 text-xs mt-1">{errors.content.message}</p>}
