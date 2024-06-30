@@ -29,6 +29,7 @@ const EditBlogForm = () => {
     const [serverErrors, setServerErrors] = useState([]);
     const [file, setFile] = useState(null);
     const [contentValue, setContentValue] = useState('');
+    const [loading, setLoading] = useState(true);
 
     const handleQuillChange = (content, delta, source, editor) => {
         setContentValue(editor.getHTML());
@@ -49,6 +50,7 @@ const EditBlogForm = () => {
                 });
                 const data = await response.json();
                 if (response.ok) {
+                    setLoading(false);
                     setValue('title', data.title);
                     setValue('category', data.category);
                     setValue('time_read', data.time_read);
@@ -61,6 +63,8 @@ const EditBlogForm = () => {
                 }
             } catch (error) {
                 console.error("Network error:", error);
+            } finally {
+                setLoading(false);
             }
         }
         fetchData();

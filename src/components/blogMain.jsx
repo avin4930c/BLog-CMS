@@ -5,7 +5,6 @@ import BlogEditCard from "./blogEditCard";
 import LoadingComponent from "./loadingComponent";
 
 function BlogMain() {
-    const { user } = useContext(AuthContext);
     const [blogData, setBlogData] = useState([]);
     const [loading, setLoading] = useState(true);
 
