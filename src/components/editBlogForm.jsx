@@ -8,6 +8,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import LoadingComponent from './loadingComponent';
 
 const schema = yup.object().shape({
     title: yup.string().required('Title is required'),
@@ -129,6 +130,10 @@ const EditBlogForm = () => {
             console.error('Error:', error);
         }
     };
+
+    if (loading) {
+        return (<LoadingComponent />);
+    }
 
     return (
         <>
