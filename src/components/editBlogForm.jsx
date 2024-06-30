@@ -132,7 +132,7 @@ const EditBlogForm = () => {
             <section className="bg-gray-100 py-10">
                 <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
                     <h1 className="text-3xl font-bold text-gray-900 mb-6">Edit Blog Post</h1>
-                    <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-6 gap-6">
+                    <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-6 gap-6" >
                         <div className="col-span-6 sm:col-span-3">
                             <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
                             <input
