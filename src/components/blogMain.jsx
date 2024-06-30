@@ -2,10 +2,12 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import AddBlogButton from "./addBlogButton";
 import BlogEditCard from "./blogEditCard";
+import LoadingComponent from "./loadingComponent";
 
 function BlogMain() {
     const { user } = useContext(AuthContext);
     const [blogData, setBlogData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchData() {
@@ -19,16 +21,23 @@ function BlogMain() {
                 const data = await response.json();
                 if (response.ok) {
                     setBlogData(data);
+                    setLoading(false);
                 } else {
                     console.error('Error fetching data');
                 }
             } catch (error) {
                 console.error('Network error:', error);
+            } finally {
+                setLoading(false);
             }
         }
 
         fetchData();
     }, []);
+
+    if (loading) {
+        return (<LoadingComponent />);
+    }
 
     return (
         <>
