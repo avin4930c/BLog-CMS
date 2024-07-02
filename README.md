@@ -10,9 +10,9 @@ To edit and add posts you'll need special role, ask the repo owner for access.
 ## Features
 
 - **Post Management**
-- **Category Management**: Create and manage categories for organizing posts.
-- **User Management**: Manage user roles and permissions.
-- **Media Management**: Upload and manage images and other media files.
-- **API Integration**: Backend integration with Blog Frontend for content delivery.
-- **Dashboard**: Admin dashboard for managing content and settings.
-- **Security Features**: Role-based access control (RBAC) and secure authentication.
+- **Category Management**
+- **User Management**
+- **Media Management**
+- **API Integration**
+- **Dashboard**
+- **Security Features**
