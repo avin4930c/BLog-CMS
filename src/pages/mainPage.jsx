@@ -1,5 +1,6 @@
 import AddBlogForm from "../components/addBlogForm";
 import BlogMain from "../components/blogMain";
+import Footer from "../components/footer";
 import NavBar from "../components/navbar";
 
 function MainPage() {
@@ -7,6 +8,7 @@ function MainPage() {
         <>
             <NavBar />
             <BlogMain />
+            <Footer backgroundColor="bg-white" />
         </>
     )
 }

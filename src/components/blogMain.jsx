@@ -40,8 +40,9 @@ function BlogMain() {
 
     return (
         <>
+        <section className="min-h-[80vh]">
             <div className="flex flex-col items-center">
-                <h1 className="text-3xl font-bold py-4">Published Blogs</h1>
+                <h1 className="text-3xl font-bold py-4">Blogs Dashboard</h1>
                 <AddBlogButton />
             </div>
             <section className="py-7 bg-gray-100">
@@ -55,6 +56,7 @@ function BlogMain() {
                     </div>
                 </div>
             </section>
+        </section>
         </>
     );
 }

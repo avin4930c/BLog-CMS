@@ -17,6 +17,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 const initialNavigation = [
     { name: 'Blogs', href: '/', current: true },
+    { name: 'Frontend Website', href: 'https://blog-frontend-five-omega.vercel.app/', current: false },
 ];
 
 function classNames(...classes) {
