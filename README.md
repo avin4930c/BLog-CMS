@@ -1,8 +1,18 @@
-# React + Vite
+# Blog CMS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Blog CMS repository! This project serves as the Content Management System (CMS) for a blog application, providing functionalities for managing posts, comments, categories, and more.
 
-Currently, two official plugins are available:
+The site is hosted on Vercel and can be accessed [https://blog-cms-six-omega.vercel.app/](https://blog-cms-six-omega.vercel.app/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To edit and add posts you'll need special role, ask the repo owner for access.
+
+
+## Features
+
+- **Post Management**
+- **Category Management**
+- **User Management**
+- **Media Management**
+- **API Integration**
+- **Dashboard**
+- **Security Features**
