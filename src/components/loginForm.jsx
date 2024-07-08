@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { GiSpikedDragonHead } from "react-icons/gi";
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
 const schema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Email is required'),
@@ -13,11 +14,45 @@ const schema = yup.object().shape({
 
 function LoginForm() {
     const navigate = useNavigate();
+    const [googleErrors, setGoogleErrors] = useState('');
     const { login, authToken } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
     const [serverErrors, setServerErrors] = useState([]);
+
+    const handleGoogleSuccess = async (response) => {
+        try {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/user/googleLogin`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    roleCheck: 'true',
+                },
+                body: JSON.stringify({ token: response.credential }),
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                console.log(data);
+                login(data.token);
+                setServerErrors([]);
+                navigate('/');
+            }
+            else {
+                const errorData = await res.json();
+                if (res.status === 401) {
+                    setGoogleErrors( errorData.message || 'Unauthorized: Invalid username or password');
+                } else if (res.status === 403) {
+                    setGoogleErrors( 'Forbidden: You do not have permission to perform this action');
+                } else {
+                    setGoogleErrors( errorData.message || 'Login failed');
+                }
+            }
+        } catch (error) {
+            console.error('Error during Google login/signup:', error);
+        }
+    };
 
     const onSubmit = async (data) => {
         console.log(data);
@@ -143,6 +178,23 @@ function LoginForm() {
                                 </p>
                             </div>
                         </form>
+                        <div className="google-login mt-10">
+                            <GoogleOAuthProvider clientId={`${import.meta.env.VITE_GOOGLE_CLIENT_ID}`}>
+                                <div className='flex justify-center'>
+                                    <GoogleLogin
+                                        onSuccess={handleGoogleSuccess}
+                                        onError={() => {
+                                            console.log('Login Failed');
+                                        }}
+                                    />
+                                </div>
+                            </GoogleOAuthProvider>
+                            {googleErrors && (
+                                <div className="mt-4 text-red-500 text-center">
+                                    {googleErrors}
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </main>
             </div>
