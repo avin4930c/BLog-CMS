@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
@@ -22,6 +22,7 @@ const schema = yup.object().shape({
 const AddBlogForm = () => {
     const navigate = useNavigate();
     const { user, authToken } = useContext(AuthContext);
+    const [addButton, setAddButton] = useState(true);
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
@@ -61,6 +62,7 @@ const AddBlogForm = () => {
     };
 
     const onSubmit = async (data) => {
+        setAddButton(false);
         if (file) {
             const uploadedUrl = await uploadFileToCloudinary(file);
             if (uploadedUrl) {
@@ -94,6 +96,9 @@ const AddBlogForm = () => {
             }
         } catch (error) {
             console.error('Error:', error);
+        }
+        finally {
+            setAddButton(true);
         }
     };
 
@@ -214,7 +219,7 @@ const AddBlogForm = () => {
                         <div className="col-span-6">
                             <button
                                 style={{ backgroundColor: user ? '#2563EB' : '#D1D5DB' }}
-                                disabled={user ? false : true}
+                                disabled={(user && addButton) ? false : true}
                                 type="submit"
                                 className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             >

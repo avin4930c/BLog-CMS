@@ -80,7 +80,7 @@ function EditProfileMain() {
             }
 
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/user/updateUse`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/user/updateUser`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
